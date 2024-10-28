@@ -40,13 +40,12 @@ public class Person {
 
 	// CONSTRUCTORS	
 	public Person(String name, String pronouns, String background, int privilege) {
-		Identity identity
-		this.setAll(name, pronouns, background, privilege);
+		Identity identity = new Identity(pronouns, background);
+		this.setAll(name, identity, privilege);
 	}
 		
 	public Person() {
-
-		this(DEFAULT_NAME, DEFAULT_PRONOUNS, DEFAULT_BACKGROUND, DEFAULT_PRIVILEGE);
+		this.setAll(DEFAULT_NAME, identity, DEFAULT_PRIVILEGE);
 	}
 	
 	public Person(Person original) {
@@ -70,10 +69,9 @@ public class Person {
 		this.privilege = privilege;
 	}
 
-	public void setAll(String name, String pronouns, String background, int privilege) {
+	public void setAll(String name, Identity identity, int privilege) {
 		this.setName(name);
-		this.setPronouns(pronouns);
-		this.setBackground(background);
+		this.setIdentity(identity);
 		this.setPrivilege(privilege);
 	}
 
