@@ -74,6 +74,19 @@ public class Main
 					break;
 				case 3:
 					/***** TODO: (Part 1) implement a comparison case using the comparable method on the Person class to compare self to p1-p4*****/
+					for (int i = 0; i < people.length; i++) {
+						for (int j = 0; j < people.length - 1; j++) {
+							if (people[j].compareTo(people[j + 1]) > 0) {
+								Person temp = people[j];
+								people[j] = people[j + 1];
+								people[j + 1] = temp;
+							}
+						}
+					}
+
+					for (int i = 0; i < people.length; i++) {
+						System.out.println(people[i]);
+					}
 					
 					System.out.println("\nReturning to main menu.\n");
 					break;
@@ -107,7 +120,24 @@ public class Main
 		story = keyboard.nextLine();
 		
 		person.setName(name);
-		person.setStory(story);
+		person.setIdentity(identity = new Person.Identity(pronouns, story));
+	}
+
+	public static void comparePeople(Person[] group) {
+		Person self = group[group.length - 1];
+		int compareResults;
+
+		System.out.println("\nSumary of privilege estimates:");
+		for (int i = 0; i < group.length - 1; i++) {
+			compareResults = self.compareTo(group[i]);
+
+			if (compareResults > 0)
+				System.out.println("More privilege than " + group[i].getName());
+			else if (compareResults == 0)
+				System.out.println("Same privilege as " + group[i].getName());
+			else
+				System.out.println("Less privilege than " + group[i].getName());
+		}
 	}
 
 	public static int doPrivilegeQuestionnaire() {
